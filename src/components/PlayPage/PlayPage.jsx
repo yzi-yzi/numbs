@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import FacebookLogin from 'react-facebook-login';
 import './playPage.sass';
 
 const MAX_TIME = 2, SHOW_TIME = 1500, MIN_LEVEL = 1;
