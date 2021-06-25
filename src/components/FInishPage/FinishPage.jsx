@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import './finishPage.sass';
 
@@ -46,7 +46,7 @@ const FinishPage = ({ level, correct, score, goToStart, isAuth, getProfile }) =>
 						</div>
 					</footer>
 				) : (
-					<div href="#" className="btn btn-default" onClick={goToStart}>Save and Try again</div>
+					<div href="#" className="btn btn-default" onClick={goToStart}>Try again</div>
 				)
 			}
 		</div>

@@ -3,8 +3,10 @@ import Header from '../Header/Header';
 import StartPage from '../StartPage/StartPage';
 import FinishPage from '../FInishPage/FinishPage';
 import PlayPage from '../PlayPage/PlayPage';
-import React, { useState } from 'react';
+import Ranking from '../Raking/Raking.jsx';
+import React, { useState, useEffect } from 'react';
 import FacebookLogin from 'react-facebook-login';
+import database from '../../firebase.js';
 
 const START_SCREEN = 0, PLAYING_SCREEN = 1, FINISH_SCREEN = 2;
 
@@ -15,17 +17,38 @@ function App() {
 	const [correct, setCorrect] = useState(0);
 	const [score, setScore] = useState(0);
 	const [profile, setProfile] = useState();
+	const [ranking, setRanking] = useState(false);
+	const [players, setPlayers] = useState([]);
 
 	const responseFacebook = (response) => {
 		if (response.id) {
 			setAuth(true);
-			setProfile({
+
+			const p = {
 				name: response.name,
-				fb_id: response.id,
+				email: response.email,
+				fb_id: response.userID,
 				avatar: response.picture.data.url
-			})
+			};
+
+			setProfile(p);
+
+			if (screen === FINISH_SCREEN) {
+				saveScore(p, score);
+			}
 		}
 	};
+
+	const saveScore = (p, s) => {
+		const player = players.find(item => item.fb_id === p.fb_id);
+
+		if (!player || player.score < s) {
+			database.ref('players/' + p.fb_id).set({
+				...p,
+				score: s
+			});
+		}
+	}
 
 	const start = () => {
 		setScreen(PLAYING_SCREEN);
@@ -36,6 +59,8 @@ function App() {
 		setCorrect(c);
 		setScore(s);
 		setScreen(FINISH_SCREEN);
+
+		saveScore(profile, s);
 	}
 
 	const onboarding = () => {
@@ -56,9 +81,21 @@ function App() {
 		}
 	}
 
+	const toggle = () => {
+		setRanking(!ranking);
+	};
+
+	useEffect(() => {
+		database.ref('players/').on('value', (snapshot) => {
+			const data = snapshot.val();
+			setPlayers(Object.values(data));
+		})
+	}, []);
+
 	return (
 		<div className="app">
-			<Header profile={profile} />
+			<Header profile={profile} toggleRanking={toggle} />
+			{ ranking && <Ranking players={players} /> }
 			<div className="app_board">
 				{showScreen()}
 			</div>

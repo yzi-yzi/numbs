@@ -14,15 +14,23 @@ body {
 }
 
 .btn {
-	color: #fff;
 	font-size: 16px;
 	line-height: 20px;
 	border-radius: 8px;
-	background-color: #5784BA;
 	padding: 10px 16px;
 	text-decoration: none;
 	display: inline-block;
 	cursor: pointer;
+}
+
+.btn-default {
+	color: #fff;
+	background-color: #5784BA;
+}
+
+.btn-secondary {
+	color: #5784BA;
+	background-color: #B6D8F2;
 }
 
 .btn:hover, button:hover {

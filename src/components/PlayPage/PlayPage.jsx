@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './playPage.sass';
 
-const MAX_TIME = 2, SHOW_TIME = 1500, MIN_LEVEL = 1;
+const MAX_TIME = 1, SHOW_TIME = 1500, MIN_LEVEL = 1;
 
 const getRandom = (level) => {
 	return Math.random().toFixed(level + 1).replace('.', '');

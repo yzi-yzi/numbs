@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import logo from './snorlax.svg';
 
-const Header = ({ profile = { } }) => (
+const Header = ({ profile = { }, toggleRanking }) => (
 	<div className="header">
 		<div className="header_logo">
 			<div>N</div>
@@ -16,7 +16,7 @@ const Header = ({ profile = { } }) => (
 		<div className={classNames("header_icon", profile.avatar ? 'auth' : '')} style={{ backgroundImage: `url(${profile.avatar || logo})` }} />
 
 		<div className="header_menu">
-			<div className="header_menu_item">About</div>
+			<div className="btn btn-secondary" onClick={toggleRanking}>Ranking Board</div>
 		</div>
 	</div>
 );
