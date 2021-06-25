@@ -1,7 +1,7 @@
 import React from 'react';
 import './finishPage.sass';
 
-const FinishPage = ({ level, score, wrong }) => (
+const FinishPage = ({ level, correct, score, goToStart }) => (
 	<div className="finish_page">
 		<header>
 			<h2 className="title">
@@ -17,8 +17,8 @@ const FinishPage = ({ level, score, wrong }) => (
 		</header>
 
 		<main>
-			<p className="level">Level 1, Wrong : 4</p>
-			<p className="score">Score : 40</p>
+			<p className="level">Level {level}, Correct : {correct}</p>
+			<p className="score">Score : {score}</p>
 		</main>
 
 		<footer>
@@ -31,9 +31,7 @@ const FinishPage = ({ level, score, wrong }) => (
 				callback={this.responseFacebook} /> */}
 		</footer>
 
-		<a href="#" className="btn btn-default" >
-			Try again
-		</a>
+		<div href="#" className="btn btn-default" onClick={goToStart}>Try again</div>
 	</div>
 
 );

@@ -1,5 +1,6 @@
 import './header.sass';
 import React from 'react';
+import logo from './snorlax.svg';
 
 const Header = () => (
 	<div className="header">
@@ -10,6 +11,8 @@ const Header = () => (
 			<div>b</div>
 			<div>s</div>
 		</div>
+
+		<div className="header_icon" style={{ backgroundImage: `url(${logo})` }} />
 
 		<div className="header_menu">
 			<div className="header_menu_item">About</div>
