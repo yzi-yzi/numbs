@@ -40,7 +40,7 @@ function App() {
 	};
 
 	const saveScore = (p, s) => {
-		const player = players.find(item => item.fb_id === p.fb_id);
+		const player = players.find(item => item?.fb_id === p?.fb_id);
 
 		if (!player || player.score < s) {
 			database.ref('players/' + p.fb_id).set({
